@@ -17,6 +17,24 @@ class MyClass(object):
 
         return processed_string
 
+    # Функция для замены "особенных номеров" на "хорошие номера" и разделения их
+    def replace(self, match):
+        number1 = match[0].rjust(4, '0')
+        number2 = match[1].rjust(5, '0')
+        return f"{number1}\\{number2}"
+
+    def extract_good_numbers(self, text):
+        # Паттерн для поиска "особенных номеров"
+        pattern = r'(\d{2,4})\\(\d{2,5})'
+
+        # Находим все "особенные номера" в тексте с помощью регулярных выражений
+        found_numbers = re.findall(pattern, text)
+
+        # Преобразуем найденные "особенные номера" в "хорошие номера" и объединяем их в строку
+        good_numbers = [self.replace(match) for match in found_numbers]
+
+        return good_numbers
+
     # Задание 2
     def add_atms(self, n: int, k: int, distances: List[int]) -> List[int]:
         # Создаем список новых расстояний
@@ -56,7 +74,7 @@ class MyClass(object):
 
 if __name__ == '__main__':
     my_class = MyClass()
-    print(my_class.process_number('17\\234'))
+    print(my_class.extract_good_numbers('Адрес 5467\\456. Номер 405\\549'))
     print()
 
     print(my_class.add_atms(5, 3, [100, 180, 50, 60, 150]))
