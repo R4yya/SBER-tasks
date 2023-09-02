@@ -1,10 +1,11 @@
 import re
 
 
-class Task(object):
+class MyClass(object):
     def __init__(self):
         pass
 
+    # Задание 1
     def process_number(self, string):
         # Паттерн для поиска особенных номеров
         pattern = r'(\d{2,4})\\(\d{2,5})'
@@ -15,13 +16,50 @@ class Task(object):
 
         return processed_string
 
-    def task_2(self):
-        pass
+    # Задание 2
+    def add_atms(self, n, k, distances):
+        # Создаем список новых расстояний
+        new_distances = []
 
-    def task_3(self):
-        pass
+        # Добавляем сначала существующие расстояния
+        for distance in distances:
+            new_distances.append(distance)
+
+        # Добавляем новые банкоматы между существующими
+        for i in range(k):
+            # Берем самое большое расстояние
+            max_distance = max(new_distances)
+            # Индекс самого большого расстояния
+            max_distance_index = new_distances.index(max_distance)
+            # Новое расстояние будет половиной максимального
+            new_distance = max_distance // 2
+            # Вставляем новое расстояние перед максимальным
+            new_distances.insert(max_distance_index, new_distance)
+            # Вставляем еще одно новое расстояние
+            new_distances.insert(max_distance_index + 1, new_distance)
+            # Удаляем старое максимальное расстояние
+            new_distances.remove(max_distance)
+
+        return new_distances
+
+    # Задание 3
+    def max_concatenated_num(self, nums):
+        # Сортируем строки в обратном лексикографическом порядке
+        sorted_nums = sorted(nums, reverse=True)
+
+        # Конкатенируем отсортированные строки и возвращаем результат
+        max_num = ''.join(sorted_nums)
+
+        return max_num
 
 
 if __name__ == '__main__':
-    task = Task()
-    print(task.process_number('17\\234'))
+    my_class = MyClass()
+    print(my_class.process_number('17\\234'))
+    print()
+
+    print(my_class.add_atms(5, 3, [100, 180, 50, 60, 150]))
+    print()
+
+    print(my_class.max_concatenated_num(['11', '234', '005', '89']))
+    print()
