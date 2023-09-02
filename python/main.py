@@ -1,4 +1,5 @@
 import re
+from typing import List
 
 
 class MyClass(object):
@@ -6,7 +7,7 @@ class MyClass(object):
         pass
 
     # Задание 1
-    def process_number(self, string):
+    def process_number(self, string: str) -> str:
         # Паттерн для поиска особенных номеров
         pattern = r'(\d{2,4})\\(\d{2,5})'
 
@@ -17,7 +18,7 @@ class MyClass(object):
         return processed_string
 
     # Задание 2
-    def add_atms(self, n, k, distances):
+    def add_atms(self, n: int, k: int, distances: List[int]) -> List[int]:
         # Создаем список новых расстояний
         new_distances = []
 
@@ -43,7 +44,7 @@ class MyClass(object):
         return new_distances
 
     # Задание 3
-    def max_concatenated_num(self, nums):
+    def max_concatenated_num(self, nums: List[str]) -> str:
         # Сортируем строки в обратном лексикографическом порядке
         sorted_nums = sorted(nums, reverse=True)
 
