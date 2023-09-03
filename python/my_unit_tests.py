@@ -8,27 +8,45 @@ class TestMyClass(unittest.TestCase):
         self.my_class = MyClass()
 
     # Тесты для задания 1
-    def test_process_number_with_padding(self):
+    def test_extract_good_numbers_with_padding(self):
         input_string = '17\\234'
         expected_output = ['0017\\00234']
         result = self.my_class.extract_good_numbers(input_string)
         self.assertEqual(result, expected_output)
 
-    def test_process_number_without_padding(self):
+    def test_extract_good_numbers_without_padding(self):
         input_string = '1234\\56789'
         expected_output = ['1234\\56789']
         result = self.my_class.extract_good_numbers(input_string)
         self.assertEqual(result, expected_output)
 
-    def test_process_number_first_group(self):
+    def test_extract_good_numbers_first_group(self):
         input_string = '12\\34567'
         expected_output = ['0012\\34567']
         result = self.my_class.extract_good_numbers(input_string)
         self.assertEqual(result, expected_output)
 
-    def test_process_number_second_group(self):
+    def test_extract_good_numbers_second_group(self):
         input_string = '1234\\567'
         expected_output = ['1234\\00567']
+        result = self.my_class.extract_good_numbers(input_string)
+        self.assertEqual(result, expected_output)
+
+    def test_extract_good_numbers_with_text(self):
+        input_string = 'Адрес 5467\\456. Номер 405\\549'
+        expected_output = ['5467\\00456', '0405\\00549']
+        result = self.my_class.extract_good_numbers(input_string)
+        self.assertEqual(result, expected_output)
+
+    def test_extract_good_numbers_only_text(self):
+        input_string = 'Адрес. Номер'
+        expected_output = []
+        result = self.my_class.extract_good_numbers(input_string)
+        self.assertEqual(result, expected_output)
+
+    def test_extract_good_numbers_empty(self):
+        input_string = ''
+        expected_output = []
         result = self.my_class.extract_good_numbers(input_string)
         self.assertEqual(result, expected_output)
 
@@ -49,7 +67,7 @@ class TestMyClass(unittest.TestCase):
         result = self.my_class.add_atms(n, k, distances)
         self.assertEqual(result, expected_output)
 
-    def test_add_atms_equal_two_plus_one(self):
+    def test_add_atms_two_plus_one(self):
         n = 2
         k = 1
         distances = [160]
