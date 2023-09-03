@@ -8,13 +8,13 @@ class MyClass(object):
 
     # Задание 1
     # Функция для замены "особенных номеров" на "хорошие номера" и разделения их
-    def replace(self, match):
+    def replace(self, match: str) -> str:
         number1 = match[0].rjust(4, '0')
         number2 = match[1].rjust(5, '0')
 
         return f"{number1}\\{number2}"
 
-    def extract_good_numbers(self, text):
+    def extract_good_numbers(self, text: str) -> List[str]:
         # Паттерн для поиска "особенных номеров"
         pattern = r'(\d{2,4})\\(\d{2,5})'
 
