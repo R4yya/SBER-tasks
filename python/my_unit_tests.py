@@ -77,9 +77,9 @@ class TestMyClass(unittest.TestCase):
 
     def test_add_atms_no_extra_atms(self):
         n = 5
-        k = 0
+        k = 0  # Пусть и ноль не натуралоьное число
         distances = [100, 180, 50, 60, 150]
-        expected_output = distances  # Не добавляем дополнительных банкоматов
+        expected_output = distances
         result = self.my_class.add_atms(n, k, distances)
         self.assertEqual(result, expected_output)
 
@@ -87,7 +87,7 @@ class TestMyClass(unittest.TestCase):
         n = 5
         k = 4
         distances = [400, 180, 50, 60, 150]
-        expected_output = [100, 100, 100, 100, 90, 90, 50, 60, 150] 
+        expected_output = [100, 100, 100, 100, 90, 90, 50, 60, 150]
         result = self.my_class.add_atms(n, k, distances)
         self.assertEqual(result, expected_output)
 
