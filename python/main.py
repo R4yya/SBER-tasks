@@ -7,30 +7,21 @@ class MyClass(object):
         pass
 
     # Задание 1
-    def process_number(self, string: str) -> str:
-        # Паттерн для поиска особенных номеров
-        pattern = r'(\d{2,4})\\(\d{2,5})'
-
-        # Заменяем особенные номера на хорошие номера с помощью лямбда-функции
-        processed_string = re.sub(pattern, lambda match: match.group(
-            1).rjust(4, '0') + '\\' + match.group(2).rjust(5, '0'), string)
-
-        return processed_string
-
     # Функция для замены "особенных номеров" на "хорошие номера" и разделения их
     def replace(self, match):
         number1 = match[0].rjust(4, '0')
         number2 = match[1].rjust(5, '0')
+
         return f"{number1}\\{number2}"
 
     def extract_good_numbers(self, text):
         # Паттерн для поиска "особенных номеров"
         pattern = r'(\d{2,4})\\(\d{2,5})'
 
-        # Находим все "особенные номера" в тексте с помощью регулярных выражений
+        # Находим все "особенные номера" в тексте с помощью регулярного выражения
         found_numbers = re.findall(pattern, text)
 
-        # Преобразуем найденные "особенные номера" в "хорошие номера" и объединяем их в строку
+        # Преобразуем найденные "особенные номера" в "хорошие номера" и собираем их в список
         good_numbers = [self.replace(match) for match in found_numbers]
 
         return good_numbers
